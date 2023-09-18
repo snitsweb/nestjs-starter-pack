@@ -1,0 +1,5 @@
+.postgresql
+.redis
+.idea
+dist
+node_modules

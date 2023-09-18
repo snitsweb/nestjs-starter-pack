@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+ db:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:${POSTGRES_PORT}
+    volumes:
+      - .postgresql:/var/lib/postgresql
+    env_file:
+      .env
+ redis:
+    image: redis
+    restart: always
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD} --user ${REDIS_USER}
+    ports:
+      - '6379:${REDIS_PORT}'
+    volumes: 
+      - .redis:/data
+    env_file:
+      .env
+    
